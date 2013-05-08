@@ -149,7 +149,8 @@
         });
       } else {
         $('body').click(function (event) {
-          if (!$(event.target).parents('.dk_container').length) {
+          var $parents = $(event.target).parents('.dk_container');
+          if (!$parents.length || ($parents.attr('id') != $dk.attr('id'))) {
             _closeDropdown($dk);
           }
         });
