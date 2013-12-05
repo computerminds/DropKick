@@ -11,10 +11,13 @@
 (function ($, window, document) {
 
   var ie6 = false;
+  var ie11 = false;
 
   // Help prevent flashes of unstyled content
   if ($.browser.msie && parseInt($.browser.version.split('.', 1), 10) < 7) {
     ie6 = true;
+  } else if (Object.hasOwnProperty.call(window, "ActiveXObject") && !window.ActiveXObject) {
+    ie11 = true;
   } else {
     document.documentElement.className = document.documentElement.className + ' dk_fouc';
   }
@@ -368,7 +371,7 @@
     });
 
     // Handle click events on individual dropdown options
-    $('.dk_options a').live(($.browser.msie ? 'mousedown' : 'click'), function (e) {
+    $('.dk_options a').live((($.browser.msie || ie11) ? 'mousedown' : 'click'), function (e) {
       var
         $option = $(this),
         $dk     = $option.parents('.dk_container').first(),
