@@ -143,7 +143,7 @@
       lists[lists.length] = $select;
 
       // Fix identified in issue #11.
-      if (!$.browser.msie) {
+      if (!($.browser.msie || ie11)) {
         // Focus events
         $dk.bind('focus.dropkick', function (e) {
           $dk.addClass('dk_focus');
